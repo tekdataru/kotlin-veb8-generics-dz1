@@ -39,6 +39,17 @@ fun main() {
     val notes = Notes()
     notes.add("Первая заметка")
     notes.edit(0, "Первая заметка редакция 1")
+    notes.createComment(0, "Первый коммент к 1 заметке")
+    notes.createComment(0, "Второй коммент к 1 заметке")
+    notes.add("Вторая заметка")
+    notes.edit(1,"Вторая заметка ред. 1")
+    notes.createComment(1, "Первый коммент к 2 заметке")
+    notes.add("Третья заметка")
+    notes.createComment(2, "Коммент к 3 заметке")
+    notes.deleteComment(3)
+    notes.createComment(2, "Второй коммент к 3 заметке")
+    notes.editComment(4, "Второй коммент к 3 заметке ред 1")
+    notes.delete(1)
 
     notes.printAllNotes()
 
