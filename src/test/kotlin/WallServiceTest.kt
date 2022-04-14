@@ -45,7 +45,7 @@ class WallServiceTest {
     }
 
     @Test(expected = PostNotFoundException::class)
-    fun shouldThrow() {
+    fun shouldThrowPostNotFoundException() {
         val p1 = Post(id = 1, text = "text1")
         val p2 = Post(id = 2, text = "text2")
         val p3 = Post(id = 1, text = "text3")
@@ -58,4 +58,8 @@ class WallServiceTest {
 
         ws.createComment(comment)
     }
+
+
+
+
 }

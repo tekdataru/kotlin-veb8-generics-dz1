@@ -47,9 +47,11 @@ fun main() {
     notes.add("Третья заметка")
     notes.createComment(2, "Коммент к 3 заметке")
     notes.deleteComment(3)
+    notes.undeleteComment(3)
+    notes.editComment(3, "Редактируем удаленный/восстановленный комментарий")
     notes.createComment(2, "Второй коммент к 3 заметке")
     notes.editComment(4, "Второй коммент к 3 заметке ред 1")
-    notes.delete(1)
+   // notes.delete(1)
 
     notes.printAllNotes()
 

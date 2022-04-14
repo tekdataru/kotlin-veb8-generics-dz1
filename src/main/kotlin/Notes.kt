@@ -4,7 +4,7 @@ class Notes {
     private var notes = mutableListOf<Note>()
     private var comments = mutableListOf<Comment>()
 
-    fun add(text:String){
+    fun add(text:String):Int{
         var i = -1
         for (note in notes){
             i = max(i, note.id)
@@ -12,20 +12,25 @@ class Notes {
 
         val note:Note = Note(i+1, text)
         notes += note
+
+        return note.id
     }
 
-    fun edit(noteId:Int, text: String){
+    fun edit(noteId:Int, text: String):Int{
         var ind:Int = -1
         for (note in notes){
             ind++
             if (note.id == noteId){
                 val newNote = Note(id = note.id, text = text)
                 notes[ind] = newNote
+                return 1
             }
         }
+
+        return 0
     }
 
-    fun delete(noteId:Int){
+    fun delete(noteId:Int):Int{
         var wasDeleted = false
 
         var ind:Int = -1
@@ -45,7 +50,7 @@ class Notes {
             if (ind > 0) {break}
 
 
-            If ((comments[-ind].postId as Int) == noteId){
+            if (comments[-ind].postId == noteId){
                 comments.removeAt(-ind)
             }
         }
@@ -76,6 +81,8 @@ class Notes {
         for (comment in comments){
             ind++
             if (comment.id == commentId) {
+                if (comment.deleted) throw AttemptToEditDeletedCommentException()
+
                 comments[ind] = Comment(id = comment.id, postId = comment.postId, text = message)
                 return 1
             }
@@ -85,11 +92,26 @@ class Notes {
 
     }
 
-    fun deleteComment(commentId: Int) {
+    fun deleteComment(commentId: Int):Int {
 
         for (comment in comments){
             if (comment.id == commentId) {
-                comments.remove(comment)
+                //comments.remove(comment)
+                comment.deleted = true
+                return 1
+            }
+        }
+
+        return 0
+
+    }
+
+    fun undeleteComment(commentId: Int):Int {
+
+        for (comment in comments){
+            if (comment.id == commentId) {
+                //comments.remove(comment)
+                comment.deleted = false
                 return 1
             }
         }
@@ -112,6 +134,8 @@ class Notes {
                 }
             }*/
             for (comment in comments){
+                if (comment.deleted) continue
+
                 if (note.id == comment.postId){
                     println("    " + comment)
                 }
