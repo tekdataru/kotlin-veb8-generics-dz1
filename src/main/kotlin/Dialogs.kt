@@ -3,11 +3,32 @@ class Dialogs {
 
 
     fun add(dialog: Dialog) {
-        for (dialogIn in dialogs) {
-            if (dialog.id == dialogIn.id) return
-        }
+
+        if (dialogs.filter { it == dialog }.size > 0) return
 
         dialogs.add(dialog)
+    }
+
+    fun remove(dialogId: Int) {
+
+        val dialogsFiltered = dialogs.filter { it.id == dialogId }
+
+        for (dialogIn in dialogsFiltered) {
+            dialogs.remove(dialogIn)
+        }
+
+    }
+
+    fun removeMessage(messageId:Int){
+        for (dialog in dialogs){
+            dialog.remove(messageId)
+        }
+    }
+
+    fun editMessage(messageId:Int, newMessageText:String){
+        for (dialog in dialogs){
+            dialog.edit(messageId, newMessageText)
+        }
     }
 
     fun pritnAllDialogs() {
@@ -22,7 +43,13 @@ class Dialogs {
             println("Идентификторы участников диалога: $str")
 
             for (message in dialog.messages) {
-                println("Ид автора: ${message.userIdAuthor}. Сообщение: ${message.text}")
+                var strViewed = "Непрочитано"
+
+                if (message.viewed) {
+                    strViewed = "Прочитано"
+                }
+
+                println("Ид автора: ${message.userIdAuthor}. Сообщение: ${message.text} (ид ${message.id}, $strViewed)")
             }
         }
 

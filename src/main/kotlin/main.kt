@@ -60,6 +60,8 @@ fun main() {
 
 
     //========== Работаем с диалогами+ ==========
+    var messageIdVar:Int = 0;
+
     val userIvan = User(0, "Иван")
     val userPetr = User(1, "Петр")
 
@@ -71,12 +73,23 @@ fun main() {
     var dialogs = Dialogs()
 
     var dialogIvanPetr = Dialog(0, mlUserIds)
-    dialogIvanPetr.add(0, "Привет")
-    dialogIvanPetr.add(1, "Приветик")
-    dialogIvanPetr.add(0, "Как дела?")
-    dialogIvanPetr.add(1, "Отлично!")
+    dialogIvanPetr.add(messageIdVar++, 0, "Привет")
+    dialogIvanPetr.add(messageIdVar++, 1, "Приветик")
+    dialogIvanPetr.add(messageIdVar++, 0, "Как дела?")
+    dialogIvanPetr.add(messageIdVar++, 1, "Хорошо!")
+    dialogIvanPetr.add(messageIdVar++, 1, "Отлично!")
 
     dialogs.add(dialogIvanPetr)
+
+    //Удаляем диалог
+    //dialogs.remove(0);
+
+    //Удаляем сообщение
+    dialogs.removeMessage(3)
+
+    //Изменяем сообщение
+    dialogs.editMessage(1, "Привет!!")
+
     dialogs.pritnAllDialogs()
 
     //Пробуем отфильтровать лямбдой сообщения по автору 0+
@@ -92,6 +105,8 @@ fun main() {
         println(mess)
     }
     //Пробуем отфильтровать лямбдой сообщения по автору 1-
+
+
 
 
     //========== Работаем с диалогами- ==========

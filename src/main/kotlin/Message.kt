@@ -1,7 +1,9 @@
 class Message(
+    val id:Int,
     val userIdAuthor: Int,
     val dialogId: Int,
-    val text:String
+    var text:String,
+    var viewed:Boolean = false
 ) {
 
     override fun toString():String{
