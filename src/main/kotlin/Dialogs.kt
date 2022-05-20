@@ -31,6 +31,8 @@ class Dialogs {
         }
     }
 
+
+
     fun pritnAllDialogs() {
         println("============= ПЕЧАТАЕМ ВСЕ ДИАЛОГИ+ ============")
 

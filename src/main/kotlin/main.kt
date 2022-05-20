@@ -104,6 +104,16 @@ fun main() {
     for (mess in messegesOfAuthorId1){
         println(mess)
     }
+
+    /*
+    Этот коммент добавлен в комите: 11 lambda + useless comment if
+    Как мне вернуться к комиту "10 lambda"?
+    aklsdjf;alksdf;alksdfja;kl
+    asdf;lkasdf;lkasdf;lk
+    asdfl;kajsdf;lkjasdf;
+    asdf;lkaj;dflkjasd
+
+     */
     //Пробуем отфильтровать лямбдой сообщения по автору 1-
 
 
